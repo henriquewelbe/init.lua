@@ -2,16 +2,9 @@ require("henrique.set")
 require("henrique.lazy")
 require("henrique.remap")
 
-local augroup = vim.api.nvim_create_augroup
-
-local HenriqueGroup = augroup('Henrique', {})
-
 local autocmd = vim.api.nvim_create_autocmd
 
-local yank_group = augroup('HighlightYank', {})
-
 autocmd('TextYankPost', {
-    group = yank_group,
     pattern = '*',
     callback = function()
         vim.highlight.on_yank({
@@ -21,22 +14,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({ "BufWritePre" }, {
-    group = HenriqueGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
-
-autocmd("BufWritePre", {
-    group = HenriqueGroup,
-    pattern = "*",
-    callback = function(args)
-        require("conform").format({ bufnr = args.buf })
-    end,
-})
-
 autocmd('LspAttach', {
-    group = HenriqueGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -46,7 +24,4 @@ autocmd('LspAttach', {
     end
 })
 
-autocmd('FileType', {
-  pattern = { '<filetype>' },
-  callback = function() vim.treesitter.start() end,
-})
+vim.diagnostic.config({ virtual_lines = true })

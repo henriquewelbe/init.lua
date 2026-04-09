@@ -77,7 +77,7 @@ return {
             },
             format_on_save = {
                 timeout_ms = 500,
-                lsp_format = "fallback"
+                lsp_format = "never"
             }
         },
     },
@@ -124,16 +124,16 @@ return {
                     { name = 'buffer' },
                 })
             })
-            vim.diagnostic.config({
-                -- update_in_insert = true,
-                float = {
-                    focusable = false,
-                    style = "minimal",
-                    border = "rounded",
-                    header = "",
-                    prefix = "",
-                },
-            })
+            -- vim.diagnostic.config({
+            --     -- update_in_insert = true,
+            --     float = {
+            --         focusable = false,
+            --         style = "minimal",
+            --         border = "rounded",
+            --         header = "",
+            --         prefix = "",
+            --     },
+            -- })
         end
     },
     {
