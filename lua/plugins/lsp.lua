@@ -1,4 +1,8 @@
 return {
+
+    {
+        "hrsh7th/cmp-nvim-lsp"
+    },
     {
         "mason-org/mason.nvim",
         opts = {
@@ -10,7 +14,7 @@ return {
         opts = {},
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
-            "neovim/nvim-lspconfig",
+            {"neovim/nvim-lspconfig"},
         }
     },
 
@@ -57,12 +61,12 @@ return {
                 },
             })
 
-            vim.lsp.config('ts_ls', {
+            vim.lsp.config('tsgo', {
                 capabilities = capabilities,
             })
 
             vim.lsp.enable("lua_ls")
-            vim.lsp.enable('ts_ls')
+            vim.lsp.enable('tsgo')
         end
     },
     {
@@ -136,7 +140,4 @@ return {
             -- })
         end
     },
-    {
-        "hrsh7th/cmp-nvim-lsp"
-    }
 }

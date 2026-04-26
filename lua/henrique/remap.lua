@@ -41,8 +41,8 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Make the current file executable
 vim.keymap.set("n", "<leader>ex", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- Run the bun setup:styles command on the satus boilerplate
-vim.keymap.set("n", "<leader><leader>s", "<cmd>!bun setup:styles<CR>", { silent = true })
+-- Backspace goes to the beggining of a line
+vim.keymap.set('n', '<BS>', '0', { noremap = true, silent = true })
 
 -- Close brackets automatically - I should probably install a plugin for this because I'm pretty sure that's not how it should be done'
 vim.keymap.set("v", "'", "di'<Esc>pa'<Esc>")

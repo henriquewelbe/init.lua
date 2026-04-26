@@ -24,4 +24,23 @@ autocmd('LspAttach', {
     end
 })
 
-vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- or "", "▎", "■"
+    spacing = 2,
+    source = true,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = true,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = true,
+  },
+})
+
+
+vim.o.exrc = true
+vim.o.secure = true
+
