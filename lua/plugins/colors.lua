@@ -8,12 +8,14 @@ function RemoveBg()
 end
 
 function SetTheme(color)
+	-- color = color or "github_dark_high_contrast"
 	color = color or "midnight"
+	-- color = color or "oldschool"
 	vim.cmd.colorscheme(color)
 end
 
 return {
-	{
+        {
 		"dasupradyumna/midnight.nvim",
 		name = "midnight",
 		lazy = false,
@@ -22,5 +24,20 @@ return {
 			SetTheme()
             RemoveBg()
 		end
-	}
+	},
+    {
+        'projekt0n/github-nvim-theme',
+        name = 'github_dark_high_contrast',
+        lazy = true,
+        -- priority = 1000,
+        config = function ()
+            SetTheme()
+            -- RemoveBg()
+        end
+    },
+    {
+        "L-Colombo/oldschool.nvim",
+        name = 'oldschool',
+        config = true,
+    }
 }

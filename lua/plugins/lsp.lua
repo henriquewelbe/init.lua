@@ -61,12 +61,18 @@ return {
                 },
             })
 
-            vim.lsp.config('tsgo', {
-                capabilities = capabilities,
-            })
+            -- vim.lsp.config('tsgo', {
+            --     capabilities = capabilities,
+            -- })
 
             vim.lsp.enable("lua_ls")
-            vim.lsp.enable('tsgo')
+            -- vim.lsp.enable('tsgo')
+            -- vim.lsp.config('vtsls', { capabilities = capabilities })
+            vim.lsp.config('ts_ls', { capabilities = capabilities })
+            vim.lsp.config('oxlint', { capabilities = capabilities })
+
+            vim.lsp.enable("ts_ls")
+            vim.lsp.enable("oxlint")
         end
     },
     {
