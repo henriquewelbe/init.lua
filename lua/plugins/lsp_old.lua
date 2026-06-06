@@ -1,0 +1,125 @@
+return {
+    -- {
+    --     "neovim/nvim-lspconfig",
+    --     dependencies = {
+    --         "stevearc/conform.nvim",
+    --         "mason-org/mason.nvim",
+    --         "mason-org/mason-lspconfig.nvim",
+    --         "hrsh7th/cmp-nvim-lsp",
+    --         "hrsh7th/cmp-buffer",
+    --         "hrsh7th/cmp-cmdline",
+    --         "hrsh7th/nvim-cmp",
+    --         "j-hui/fidget.nvim",
+    --     },
+    --     config = function ()
+    --         require("conform").setup({
+    --             formatters_by_ft = {
+    --                 lua = { "luaformatter" },
+    --                 javascript = { "biome", "biome-check", "biome-organize-imports" },
+    --                 typescript = { "biome", "biome-check", "biome-organize-imports" },
+    --                 typescriptreact = { "biome", "biome-check", "biome-organize-imports" },
+    --                 javascriptreact = { "biome", "biome-check", "biome-organize-imports" },
+    --             },
+    --
+    --             format_on_save = {
+    --                 timeout_ms = 500,
+    --                 lsp_format = "never"
+    --             }
+    --         })
+    --
+    --         local cmp = require("cmp")
+    --         local cmp_lsp = require("cmp_nvim_lsp")
+    --         local capabilities = vim.tbl_deep_extend(
+    --             "force",
+    --             {},
+    --             vim.lsp.protocol.make_client_capabilities(),
+    --             cmp_lsp.default_capabilities()
+    --         )
+    --
+    --         require("fidget").setup({})
+    --         require("mason").setup({})
+    --         require("mason-lspconfig").setup({
+    --             ensure_isntalled = {
+    --                 "lua_ls",
+    --                 "ts_ls",
+    --                 "tailwindcss",
+    --                 "biome"
+    --             },
+    --             handlers = {
+    --                 function(server_name)
+    --                     require("lspconfig")[server_name].setup {
+    --                         capabilities = capabilities
+    --                     }
+    --                 end,
+    --
+    --                 ["lua_ls"] = function()
+    --                     local lspconfig = require("lspconfig")
+    --
+    --                     lspconfig.lua_ls.setup {
+    --                         capabilities = capabilities,
+    --                         settings = {
+    --                             Lua = {
+    --                                 runtime = { version = 'LuaJIT' },
+    --                                 diagnostics = {
+    --                                     globals = { 'vim' }
+    --                                 },
+    --                                 workspace = {
+    --                                     library = vim.api.nvim_get_runtime_file("", true),
+    --                                     checkThirdParty = false,
+    --                                 },
+    --                                 format = {
+    --                                     enable = true,
+    --                                     defaultConfig = {
+    --                                         indent_style = "space",
+    --                                         indent_size = "2",
+    --                                     }
+    --                                 },
+    --                             }
+    --                         }
+    --                     }
+    --                 end,
+    --                 ["tailwindcss"] = function()
+    --                     local lspconfig = require("lspconfig")
+    --                     lspconfig.tailwindcss.setup({
+    --                         capabilities = capabilities,
+    --                         filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    --                     })
+    --                 end,
+    --             }
+    --         })
+    --
+    --         local cmp_select = { behavior = cmp.SelectBehavior.Select }
+    --         cmp.setup({
+    --             mapping = cmp.mapping.preset.insert({
+    --                 ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
+    --                 ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
+    --                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    --                 ["<C-q>"] = cmp.mapping.complete(),
+    --             }),
+    --             sources = cmp.config.sources({
+    --                 { name = 'nvim_lsp' },
+    --                 {
+    --                     name = 'path',
+    --                     option = {
+    --                         pathMappings = {
+    --                             ['@'] = '${folder}/src'
+    --                         }
+    --                     }
+    --                 }
+    --             }, {
+    --                 { name = 'buffer' },
+    --             })
+    --         })
+    --         vim.diagnostic.config({
+    --             float = {
+    --                 focusable = false,
+    --                 style = "minimal",
+    --                 border = "rounded",
+    --                 source = true,
+    --                 header = "",
+    --                 prefix = "",
+    --             }
+    --         })
+    --     end
+    -- }
+}

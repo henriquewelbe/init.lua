@@ -26,3 +26,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "500"
 
 vim.g.mapleader = " "
+
+vim.opt.swapfile = false
+vim.opt.cursorline = true
