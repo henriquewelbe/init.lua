@@ -7,6 +7,12 @@ vim.keymap.set("n", "<leader>pwd", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+-- Copy file path to clipboard without the current file name
+vim.keymap.set("n", "<leader>PWD", function()
+	local path = vim.fn.expand("%:p:h")
+	vim.fn.setreg("+", path)
+	print("file:", path)
+end)
 
 vim.keymap.set("n", "<leader>o", function()
 	local file = vim.fn.expand("%:t")
@@ -66,6 +72,16 @@ vim.api.nvim_create_user_command("W", "write", {})
 -- Make the current file executable (useful for creating tmux commands and whatnot)
 vim.keymap.set("n", "<leader><leader>e", "<cmd>silent !chmod +x %<CR>")
 
+-- Open terminal as a bottom split
+vim.keymap.set("n", "<leader>t", function()
+	vim.cmd("botright split")
+	vim.cmd("terminal")
+	vim.bo.modified = false
+	vim.bo.bufhidden = "wipe"
+	vim.cmd("startinsert")
+end)
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
 -- Backspace goes to the beggining of a line
 vim.keymap.set("n", "<BS>", "0^")
 vim.keymap.set("v", "<BS>", "0^")
@@ -115,6 +131,9 @@ vim.keymap.set("n", "U", function()
 end)
 vim.keymap.set("n", "<leader>u", function()
 	require("lazy").update({ show = false })
+end)
+vim.keymap.set("n", "<leader>i", function()
+	require("lazy").install({ show = false })
 end)
 
 -- Decrease/increase numbers because C-x is my tmux prefix so I have to press it twice to work and I don't wanna do that
