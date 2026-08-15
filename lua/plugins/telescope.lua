@@ -15,12 +15,15 @@ return {
 			require("telescope").setup({
 				defaults = {
 					mappings = {
-						-- open file in split view with option+enter
 						n = {
 							["<M-CR>"] = actions.select_vertical,
+							["<M-S-CR>"] = actions.select_horizontal,
+							["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
 						},
 						i = {
 							["<M-CR>"] = actions.select_vertical,
+							["<M-S-CR>"] = actions.select_horizontal,
+							["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
 						},
 					},
 				},
@@ -28,7 +31,23 @@ return {
 
 			vim.keymap.set("n", "<M-p>", builtin.find_files, {})
 			vim.keymap.set("v", "<M-F>", builtin.grep_string)
-			vim.keymap.set("n", "<M-F>", builtin.live_grep)
+			vim.keymap.set("n", "<M-F>", function()
+				builtin.live_grep({
+					additional_args = { "--fixed-strings" },
+				})
+			end)
+		end,
+	},
+	{
+		"stevearc/quicker.nvim",
+		event = "FileType qf",
+		opts = {},
+		config = function()
+			require("quicker").setup({
+				vim.keymap.set("n", "<leader>q", function()
+					require("quicker").toggle()
+				end),
+			})
 		end,
 	},
 }

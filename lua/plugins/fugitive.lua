@@ -2,27 +2,28 @@ return {
 	{
 		"tpope/vim-fugitive",
 		config = function()
-			vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+			vim.keymap.set("n", "<leader>gs", "<cmd>aboveleft Git<CR>")
 
-			local Fugitive = vim.api.nvim_create_augroup("Fugitive", {})
+			local group = vim.api.nvim_create_augroup("MyFugitive", { clear = true })
 
-			local autocmd = vim.api.nvim_create_autocmd
-			autocmd("BufWinEnter", {
-				group = Fugitive,
-				pattern = "*",
+			vim.api.nvim_create_autocmd("User", {
+				group = group,
+				pattern = "FugitiveIndex",
 				callback = function()
-					if vim.bo.ft ~= "fugitive" then
-						return
-					end
-
 					local bufnr = vim.api.nvim_get_current_buf()
+
 					vim.keymap.set("n", "<BS>", "X", {
 						buffer = bufnr,
 						remap = true,
 						desc = "Restore file under cursor",
 					})
 
-					vim.keymap.set("n", "<CR>", "dv", {
+					vim.keymap.set("n", "<CR>", function()
+						vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("o", true, false, true), "m", false)
+						vim.schedule(function()
+							vim.cmd("Gvdiffsplit")
+						end)
+					end, {
 						buffer = bufnr,
 						remap = true,
 						desc = "Open diff for file under cursor",

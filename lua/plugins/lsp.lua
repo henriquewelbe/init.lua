@@ -38,6 +38,16 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.config("cssls", {
+				settings = {
+					css = {
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+				},
+			})
+
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
@@ -64,6 +74,10 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = {
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "never",
+			},
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { "biome", "biome-check", "biome-organize-imports" },
@@ -72,10 +86,15 @@ return {
 				javascriptreact = { "biome", "biome-check", "biome-organize-imports" },
 				css = { "biome" },
 				scss = { "biome" },
+				json = { "biome" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
+				toml = { "tombi" },
 			},
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_format = "never",
+			formatters = {
+				shfmt = {
+					prepend_args = { "-i", "0", "-ci", "-bn" },
+				},
 			},
 		},
 	},
