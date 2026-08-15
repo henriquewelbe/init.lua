@@ -12,7 +12,7 @@ return {
 				callback = function()
 					local bufnr = vim.api.nvim_get_current_buf()
 
-					vim.keymap.set("n", "<BS>", "X", {
+					vim.keymap.set({ "n", "v" }, "<BS>", "X", {
 						buffer = bufnr,
 						remap = true,
 						desc = "Restore file under cursor",
@@ -29,17 +29,18 @@ return {
 						desc = "Open diff for file under cursor",
 					})
 
-					vim.keymap.set("n", "C", "cc", {
+					vim.keymap.set("n", "gc", "cc", {
 						buffer = bufnr,
 						remap = true,
 						desc = "Commit staged changes",
+						nowait = true,
 					})
 
-					vim.keymap.set("n", "P", "gP", {
-						buffer = bufnr,
-						remap = true,
-						desc = "Git push",
-					})
+					-- vim.keymap.set("n", "P", "gP", {
+					-- 	buffer = bufnr,
+					-- 	remap = true,
+					-- 	desc = "Git push",
+					-- })
 				end,
 			})
 		end,
