@@ -36,11 +36,11 @@ return {
 						nowait = true,
 					})
 
-					-- vim.keymap.set("n", "P", "gP", {
-					-- 	buffer = bufnr,
-					-- 	remap = true,
-					-- 	desc = "Git push",
-					-- })
+					vim.keymap.set("n", "gp", "P", {
+						buffer = bufnr,
+						remap = true,
+						desc = "Git push",
+					})
 				end,
 			})
 		end,
