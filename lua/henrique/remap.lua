@@ -83,8 +83,7 @@ end)
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 -- Backspace goes to the beggining of a line
-vim.keymap.set("n", "<BS>", "0^")
-vim.keymap.set("v", "<BS>", "0^")
+vim.keymap.set({ "n", "v" }, "<BS>", "0^")
 
 -- Open the terminal
 vim.keymap.set("n", "!!", ":<C-F>i!")
